@@ -1,4 +1,4 @@
-# Sample Inventory Item Viewer (Python Final)
+# Simple How Long to Beat Calculator
 
 **Q:** HLTB Calculator?
 
