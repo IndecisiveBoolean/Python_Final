@@ -24,4 +24,4 @@ def addSessionCount(Window, sessions, gameTime):
     estimatedTimePerSession = round(estimatedTimePerSession * 2.0) / 2.0
     print(estimatedTimePerSession)
     print("Your estimated commitement is " + str(estimatedTimePerSession) + "hrs per session, over " + str(sessions) + " sessions.")
-    tk.Label(newWindow, text="Your estimated commitment is roughly " + str(estimatedTimePerSession) + " hours per session, over " + str(sessions) + " sessions.").grid(row=1, column=0)
+    tk.Label(newWindow, text="Your estimated commitment is roughly " + str(estimatedTimePerSession) + " hours per session," + "\n" +" over " + str(sessions) + " sessions.").grid(row=1, column=0)
