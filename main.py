@@ -4,17 +4,12 @@ from PIL import ImageTk, Image
 import calcResult
 
 
-
 mainWindow = tk.Tk()
 mainWindow.title("How Long To Beat")
 mainWindow.geometry("500x281")
 mainWindow.configure()
 
-
-
-frame = Frame(mainWindow)
-frame.pack()
-
+malo_bg = ImageTk.PhotoImage(file="./images/malo_twilight-princess.png")
 
 # Image is opened and resized appropriately
 background = Image.open("./images/birdman_oshi-no-ko.png")
@@ -37,9 +32,7 @@ bg_label.place(x=0, y=0, relwidth=1, relheight=1)
 
 
 # header is created
-titleLabel = tk.Label(frame, text = "Calculate how long it will take you to beat a game!", bg="black", fg="white").grid(column=1, row=1)
-
-
+titleLabel = tk.Label(frame, text = "Estimate Stream Session Lengths via Game Length", bg="black", fg="white").grid(column=1, row=1)
 
 
 ########### ENTRY ### LABEL ### ENTRY ############
@@ -56,15 +49,18 @@ sessionCountEntry.grid(column=1, row=5, pady=(10, 0))
 ########### ENTRY ### LABEL ### ENTRY ############
 
 
+########### BUTTONS ### BUTTONS ### BUTTONS ############
 
+calculateMyTime = Button(frame, text = "Estimate Session Length", command=lambda: calcResult.setGameLength(mainWindow, gameLengthEntry.get(), sessionCountEntry.get(), malo_bg)).grid(column=1, row=6, pady=(20, 0))
+
+# Create button to terminate program
+exitProgram = Button(frame, text = "EXIT", command=mainWindow.destroy).grid(column=1, row=7, padx=(0, 224), pady=(30, 0))
 
 ########### BUTTONS ### BUTTONS ### BUTTONS ############
 
-calculateMyTime = Button(frame, text = "Confirm Game Length", command=lambda: calcResult.setGameLength(mainWindow, gameLengthEntry.get(), sessionCountEntry.get())).grid(column=1, row=6, pady=(30, 0))
-
-########### BUTTONS ### BUTTONS ### BUTTONS ############
-
-
-
+# function that handles closure/termination of mainWindow instance
+def closeFile():
+    mainWindow.destroy
+    
 
 mainWindow.mainloop()
