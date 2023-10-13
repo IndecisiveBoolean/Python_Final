@@ -1,7 +1,12 @@
+# """
+# Author:  Josh Fowler
+# Date written: 10/12/23
+# Assignment:   Module 08 - Final-submodule
+# Short Desc:   This module handles the calculations of the given values from the MAIN module.
+# """
+
 from tkinter import *
 import tkinter as tk
-from PIL import ImageTk, Image
-# from main import closeFile
 
 def setGameLength(Window, gameTime, sessionAmmount, Tauntimage):
     addSessionCount(Window, int(sessionAmmount), int(gameTime), Tauntimage)

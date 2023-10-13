@@ -1,15 +1,21 @@
+# """
+# Author:  Josh Fowler
+# Date written: 10/12/23
+# Assignment:   Module 08 - Final
+# Short Desc:   A small program that allows you to estimate the lengths of each gaming session in order to beat the game within a specified session count/restriction.
+# """
+
 import tkinter as tk
 from tkinter import *
 from PIL import ImageTk, Image  
 import calcResult
 
-
+# root window for entire application is created and sized here.
 mainWindow = tk.Tk()
 mainWindow.title("How Long To Beat")
 mainWindow.geometry("500x281")
-mainWindow.configure()
+# mainWindow.configure()
 
-# errorWindow = None
 
 malo_bg = ImageTk.PhotoImage(file="./images/malo_twilight-princess.png")
 
@@ -54,20 +60,20 @@ def resetInputs():
     sessionCountEntry.delete(0, END)
     gameLengthEntry.delete(0, END)
 
-
-
 # Function to verify datatype in entry fields.
 def dataCheck():
     gameLengthCheck = gameLengthEntry.get()
     sessionLengthCheck = sessionCountEntry.get()
 
-    errorWindow = Toplevel(mainWindow)
-    errorWindow.title("ERROR: INPUT NOT VALID")
-    errorWindow.geometry("424x75")
+    
 
     if str.isdigit(gameLengthCheck) == True and str.isdigit(sessionLengthCheck) == True:
         calcResult.setGameLength(mainWindow, gameLengthEntry.get(), sessionCountEntry.get(), malo_bg)
     else:
+        errorWindow = Toplevel(mainWindow)
+        errorWindow.title("ERROR: INPUT NOT VALID")
+        errorWindow.geometry("424x75")
+
         errorMsgFrame = Frame(errorWindow, relief="raised", borderwidth=2)
         errorMsgFrame.grid(column=0, row=0)
 
@@ -76,8 +82,10 @@ def dataCheck():
 
         tk.Label(errorMsgFrame, text="Input not valid, ensure both fields contain ONLY whole numbers and try again.").grid(column=0, row=0)
         closeErrorNotice = tk.Label(errorResetFrame, text = "Try Again").grid(column=0, row=0)
+        print("test")
         
-        # Unsure of how to get this errorWindow to close (or be destroyed) with a method call. Tkinter seems to be extremely unruly regarding logic flow.
+
+##### Unsure of how to get this errorWindow to close (or be destroyed) with a method call. Tkinter seems to be extremely unruly regarding logic flow.
 
         # closeErrorNotice = Button(errorResetFrame, text = "Try Again", command=lambda: [resetInputs, errorWindow.destroy]).grid(column=0, row=0)
 
