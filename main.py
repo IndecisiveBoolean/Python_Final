@@ -70,10 +70,12 @@ def dataCheck():
     if str.isdigit(gameLengthCheck) == True and str.isdigit(sessionLengthCheck) == True:
         calcResult.setGameLength(mainWindow, gameLengthEntry.get(), sessionCountEntry.get(), malo_bg)
     else:
+        # Error Warning window is created, sized and mounted.
         errorWindow = Toplevel(mainWindow)
         errorWindow.title("ERROR: INPUT NOT VALID")
         errorWindow.geometry("424x75")
 
+        # Frames are created for error messages to allow for easier alignment
         errorMsgFrame = Frame(errorWindow, relief="raised", borderwidth=2)
         errorMsgFrame.grid(column=0, row=0)
 
@@ -91,6 +93,7 @@ def dataCheck():
 
 ########### BUTTONS ### BUTTONS ### BUTTONS ############
 
+# Create button that calls a function that validates data and then calculates for user
 calculateMyTime = Button(frame, text = "Estimate Session Length", command=dataCheck).grid(column=1, row=6, pady=(20, 0))
 
 # Create button to terminate program
