@@ -9,6 +9,8 @@ mainWindow.title("How Long To Beat")
 mainWindow.geometry("500x281")
 mainWindow.configure()
 
+# errorWindow = None
+
 malo_bg = ImageTk.PhotoImage(file="./images/malo_twilight-princess.png")
 
 # Image is opened and resized appropriately
@@ -48,10 +50,40 @@ sessionCountEntry.grid(column=1, row=5, pady=(10, 0))
 
 ########### ENTRY ### LABEL ### ENTRY ############
 
+def resetInputs():
+    sessionCountEntry.delete(0, END)
+    gameLengthEntry.delete(0, END)
+
+
+
+# Function to verify datatype in entry fields.
+def dataCheck():
+    gameLengthCheck = gameLengthEntry.get()
+    sessionLengthCheck = sessionCountEntry.get()
+
+    errorWindow = Toplevel(mainWindow)
+    errorWindow.title("ERROR: INPUT NOT VALID")
+    errorWindow.geometry("424x75")
+
+    if str.isdigit(gameLengthCheck) == True and str.isdigit(sessionLengthCheck) == True:
+        calcResult.setGameLength(mainWindow, gameLengthEntry.get(), sessionCountEntry.get(), malo_bg)
+    else:
+        errorMsgFrame = Frame(errorWindow, relief="raised", borderwidth=2)
+        errorMsgFrame.grid(column=0, row=0)
+
+        errorResetFrame = Frame(errorWindow, relief="raised", borderwidth=0)
+        errorResetFrame.grid(column=0, row=1, pady=(5, 0))
+
+        tk.Label(errorMsgFrame, text="Input not valid, ensure both fields contain ONLY whole numbers and try again.").grid(column=0, row=0)
+        closeErrorNotice = tk.Label(errorResetFrame, text = "Try Again").grid(column=0, row=0)
+        
+        # Unsure of how to get this errorWindow to close (or be destroyed) with a method call. Tkinter seems to be extremely unruly regarding logic flow.
+
+        # closeErrorNotice = Button(errorResetFrame, text = "Try Again", command=lambda: [resetInputs, errorWindow.destroy]).grid(column=0, row=0)
 
 ########### BUTTONS ### BUTTONS ### BUTTONS ############
 
-calculateMyTime = Button(frame, text = "Estimate Session Length", command=lambda: calcResult.setGameLength(mainWindow, gameLengthEntry.get(), sessionCountEntry.get(), malo_bg)).grid(column=1, row=6, pady=(20, 0))
+calculateMyTime = Button(frame, text = "Estimate Session Length", command=dataCheck).grid(column=1, row=6, pady=(20, 0))
 
 # Create button to terminate program
 exitProgram = Button(frame, text = "EXIT", command=mainWindow.destroy).grid(column=1, row=7, padx=(0, 224), pady=(30, 0))

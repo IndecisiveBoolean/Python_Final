@@ -25,3 +25,23 @@ def addSessionCount(Window, sessions, gameTime, Tauntimage):
     # Creation and placement of second image
     sassyImageLabel = Label(responseFrame, image=Tauntimage)
     sassyImageLabel.grid(column=0, row=0, padx=10, pady=(10, 10))
+
+
+
+
+    
+    ##### A working GUI tkinter application with at least two windows.  - 50 points
+
+    ##### Implementing a modular approach in your application.  - 10 points
+
+    ##### Consistent clear navigation throughout the GUI application.  - 10 points
+
+    ##### Use at least two images in your application(images should have alternate text).  - 10 points
+
+    ##### Include at least three labels. - 10 points
+
+    #### Include at least three buttons. - 10 points
+
+    #### Include at least three call-back functions with each button, including the exit button. - 20 points
+
+    # Implement secure coding best practices, including input validation to check if the user entered the correct data type, make sure the entry box is not empty, etc.  - 10 points
